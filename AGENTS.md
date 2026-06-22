@@ -8,6 +8,7 @@
 2. If the skill is in your `available_skills`, use the `skill` tool to load it.
 3. If the skill is NOT in `available_skills`, read it directly from `.agents/skills/<name>/SKILL.md`.
 4. Only then proceed with the task.
+5. **Do NOT stage, commit, or push** unless the user explicitly asks you to.
 
 Violating this rule will result in incorrect behavior. This instruction is non-negotiable.
 

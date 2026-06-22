@@ -117,6 +117,7 @@ EOF
 
 ## Git Safety Protocol
 
+- NEVER commit unless the user explicitly asks you to
 - NEVER update git config
 - NEVER run destructive commands (--force, hard reset) without explicit request
 - NEVER skip hooks (--no-verify) unless user asks
