@@ -1,10 +1,6 @@
-const API_BASE = '/api'
+import type { RequestOptions } from '../interfaces/api'
 
-interface RequestOptions {
-  method?: string
-  body?: unknown
-  headers?: Record<string, string>
-}
+const API_BASE = '/api'
 
 export class ApiError extends Error {
   status: number

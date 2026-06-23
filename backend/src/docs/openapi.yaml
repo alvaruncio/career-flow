@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: Career-Flow API
+  description: |
+    API for Career-Flow, a professional career management platform.
+
+    ## Authentication
+    All protected endpoints require Bearer token authentication.
+  version: 1.0.0
+  contact:
+    name: Career-Flow Team
+    url: https://career-flow.app
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000
+    description: Local development
+
+tags:
+  - name: Health
+    description: Health check endpoints
+
+paths:
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Health check
+      description: Returns the API health status.
+      tags:
+        - Health
+      security: []
+      responses:
+        "200":
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+components:
+  responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+  schemas:
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token from /auth/login

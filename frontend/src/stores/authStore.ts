@@ -1,26 +1,6 @@
 import { create } from 'zustand'
 import { api } from '../services/api'
-
-interface User {
-  id: string
-  email: string
-  name?: string
-}
-
-interface AuthResponse {
-  user: User
-  token: string
-}
-
-interface AuthState {
-  user: User | null
-  token: string | null
-  isAuthenticated: boolean
-  login: (email: string, password: string) => Promise<void>
-  register: (email: string, password: string, name?: string) => Promise<void>
-  logout: () => void
-  setAuth: (user: User, token: string) => void
-}
+import type { User, AuthResponse, AuthState } from '../interfaces/auth'
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,

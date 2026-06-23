@@ -1,10 +1,6 @@
-import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
-
-interface DashboardLayoutProps {
-  children: ReactNode
-}
+import type { DashboardLayoutProps } from '../interfaces/layout'
 
 const SIDEBAR_LINKS = [
   { to: '/dashboard', label: 'Dashboard', icon: 'dashboard' },

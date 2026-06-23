@@ -7,12 +7,6 @@ Deja atrás Excel, Notion o listas dispersas. Career Flow centraliza todo el pro
 
 ---
 
-## ¿Qué problema resuelve?
-
-Buscar trabajo es un proceso desorganizado. Múltiples pestañas, correos perdidos, estados que no recuerdas. Career Flow convierte cada candidatura en una tarjeta dentro de un tablero Kanban, dándote visibilidad y control sobre cada etapa del proceso.
-
----
-
 ## Stack
 
 ```
@@ -37,7 +31,7 @@ frontend/  Vite 8 + React 19 + TypeScript 6  (ESM)
 ### Requisitos
 
 - [Node.js](https://nodejs.org/) 22+
-- [Docker](https://www.docker.com/) (para PostgreSQL)
+- [Docker](https://www.docker.com/)
 - [npm](https://www.npmjs.com/)
 
 ### Instalación
@@ -48,32 +42,52 @@ git clone https://github.com/alvaruncio/career-flow.git
 cd career-flow
 
 # 2. Instala dependencias del backend
-cd backend
-npm install
-npx prisma generate
+cd backend && npm install
 
 # 3. Instala dependencias del frontend
-cd ../frontend
-npm install
+cd ../frontend && npm install
 
-# 4. Levanta la base de datos con Docker
-cd ..
-docker compose up -d
+# 4. Levanta la base de datos y el backend
+cd .. && docker compose up -d
 
-# 5. Inicia el backend (desde backend/)
-npx nodemon server.js
+# 5. Ejecuta las migraciones de Prisma
+cd backend && npx prisma migrate dev
 
-# 6. Inicia el frontend (desde frontend/)
-npm run dev
+# 6. Inicia el frontend
+cd ../frontend && npm run dev
 ```
 
 La aplicación estará disponible en `http://localhost:5173` (frontend) y `http://localhost:3000` (API).
+
+> **Nota:** El `docker-compose.yml` incluye PostgreSQL y el backend. Si prefieres ejecutar el backend fuera de Docker, inicia solo PostgreSQL con `docker compose up -d db` y luego `npm run dev` desde `backend/`.
+
+---
+
+## Documentación API
+
+El spec OpenAPI 3.1 está en `backend/src/docs/openapi.yaml`. Para visualizarlo:
+
+```bash
+cd backend
+npx @redocly/cli build-docs src/docs/openapi.yaml
+# Abre redoc-static.html en el navegador
+```
 
 ---
 
 ## Desarrollo
 
-Cada paquete tiene su propia configuración y scripts. Revisa `AGENTS.md` para ver la lista completa de comandos y convenciones del proyecto.
+Cada paquete tiene su propia configuración y scripts. Los comandos principales:
+
+| Contexto | Comando | Descripción |
+|---|---|---|
+| `backend/` | `npm run dev` | Servidor Express con nodemon (puerto 3000) |
+| `backend/` | `npx prisma studio` | GUI de Prisma para explorar la DB |
+| `frontend/` | `npm run dev` | Vite dev server |
+| `frontend/` | `npm run build` | TypeScript check + build |
+| `frontend/` | `npm run lint` | ESLint |
+
+Consulta `AGENTS.md` para la lista completa de comandos, convenciones y skills disponibles.
 
 ---
 

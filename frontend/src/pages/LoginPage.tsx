@@ -2,11 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAuthStore } from '../stores/authStore'
 import { useState } from 'react'
-
-interface LoginFormData {
-  email: string
-  password: string
-}
+import type { LoginFormData } from '../interfaces/auth'
 
 export default function LoginPage() {
   const [serverError, setServerError] = useState('')

@@ -81,6 +81,7 @@ Skills are auto-discovered by OpenCode when working inside this repo. The agent 
 | `prisma-cli` | Run Prisma commands: `init`, `migrate`, `generate`, `studio`, `db push/pull` |
 | `prisma-client-api` | Write CRUD queries with Prisma Client, filters, transactions, relations |
 | `prisma-postgres` | Provision Prisma Postgres (cloud) database |
+| `openapi-spec-generation` | Generate and maintain OpenAPI 3.1 specifications, API docs, SDK generation, contract validation |
 
 ### For the frontend
 

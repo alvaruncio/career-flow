@@ -2,12 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAuthStore } from '../stores/authStore'
 import { useState } from 'react'
-
-interface RegisterFormData {
-  name: string
-  email: string
-  password: string
-}
+import type { RegisterFormData } from '../interfaces/auth'
 
 export default function RegisterPage() {
   const [serverError, setServerError] = useState('')
