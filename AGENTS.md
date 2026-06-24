@@ -42,6 +42,8 @@ Run all commands from the respective subdirectory (`backend/` or `frontend/`).
 
 ## Backend
 
+> **⚠️ Before any backend task, you MUST read [`backend/AGENTS.md`](./backend/AGENTS.md) for folder structure, architecture pattern, coding conventions, and examples.**
+
 - ESM (`import` / `export`). `"type": "module"` is set in `package.json`.
 - Express **5**, JSON body parser on `app`, health-check at `GET /health`.
 - Prisma **6.6**, driver: `pg` (PostgreSQL). Schema file goes in `backend/prisma/schema.prisma`.

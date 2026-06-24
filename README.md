@@ -10,7 +10,7 @@ Deja atrás Excel, Notion o listas dispersas. Career Flow centraliza todo el pro
 ## Stack
 
 ```
-backend/   Express 5 + Prisma + PostgreSQL   (CommonJS)
+backend/   Express 5 + Prisma + PostgreSQL   (ESM)
 frontend/  Vite 8 + React 19 + TypeScript 6  (ESM)
 ```
 
@@ -65,11 +65,11 @@ La aplicación estará disponible en `http://localhost:5173` (frontend) y `http:
 
 ## Documentación API
 
-El spec OpenAPI 3.1 está en `backend/src/docs/openapi.yaml`. Para visualizarlo:
+El spec OpenAPI 3.1 está en `backend/docs/openapi.yaml`. Para visualizarlo:
 
 ```bash
 cd backend
-npx @redocly/cli build-docs src/docs/openapi.yaml
+npx @redocly/cli build-docs docs/openapi.yaml
 # Abre redoc-static.html en el navegador
 ```
 
@@ -81,7 +81,7 @@ Cada paquete tiene su propia configuración y scripts. Los comandos principales:
 
 | Contexto | Comando | Descripción |
 |---|---|---|
-| `backend/` | `npm run dev` | Servidor Express con nodemon (puerto 3000) |
+| `backend/` | `npm run dev` | Servidor Express con --watch (puerto 3000) |
 | `backend/` | `npx prisma studio` | GUI de Prisma para explorar la DB |
 | `frontend/` | `npm run dev` | Vite dev server |
 | `frontend/` | `npm run build` | TypeScript check + build |
