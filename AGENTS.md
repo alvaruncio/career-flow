@@ -68,36 +68,36 @@ Skills are auto-discovered by OpenCode when working inside this repo. The agent 
 
 ### General
 
-| Skill | When to use |
-|---|---|
-| `docker-expert` | Docker, Docker Compose, containerization, multi-stage builds |
-| `git-commit` | Git commits with Conventional Commits, staging, commit messages |
-| `create-readme` | Generate README.md for the project |
-| `boost-prompt` | Interactive prompt refinement: interrogate scope, deliverables, constraints; copies final markdown to clipboard |
+| Skill | When to use | Location |
+|---|---|---|
+| `docker-expert` | Docker, Docker Compose, containerization, multi-stage builds | [`SKILL.md`](.agents/skills/docker-expert/SKILL.md) |
+| `git-commit` | Git commits with Conventional Commits, staging, commit messages | [`SKILL.md`](.agents/skills/git-commit/SKILL.md) |
+| `create-readme` | Generate README.md for the project | [`SKILL.md`](.agents/skills/create-readme/SKILL.md) |
+| `boost-prompt` | Interactive prompt refinement: interrogate scope, deliverables, constraints; copies final markdown to clipboard | [`SKILL.md`](.agents/skills/boost-prompt/SKILL.md) |
 
 ### For the REST API (backend)
 
-| Skill | When to use |
-|---|---|
-| `nodejs-express-server` | Create routes, middleware, JWT auth, Express server config |
-| `nodejs-backend-patterns` | Layered architecture (controllers/services/repositories), custom errors, DI |
-| `nodejs-best-practices` | Architecture decisions (framework, async, security, validation) |
-| `prisma-database-setup` | Configure PostgreSQL connection, driver adapters, generate Prisma Client |
-| `prisma-cli` | Run Prisma commands: `init`, `migrate`, `generate`, `studio`, `db push/pull` |
-| `prisma-client-api` | Write CRUD queries with Prisma Client, filters, transactions, relations |
-| `prisma-postgres` | Provision Prisma Postgres (cloud) database |
-| `openapi-spec-generation` | Generate and maintain OpenAPI 3.1 specifications, API docs, SDK generation, contract validation |
+| Skill | When to use | Location |
+|---|---|---|
+| `nodejs-express-server` | Create routes, middleware, JWT auth, Express server config | [`SKILL.md`](.agents/skills/nodejs-express-server/SKILL.md) |
+| `nodejs-backend-patterns` | Layered architecture (controllers/services/repositories), custom errors, DI | [`SKILL.md`](.agents/skills/nodejs-backend-patterns/SKILL.md) |
+| `nodejs-best-practices` | Architecture decisions (framework, async, security, validation) | [`SKILL.md`](.agents/skills/nodejs-best-practices/SKILL.md) |
+| `prisma-database-setup` | Configure PostgreSQL connection, driver adapters, generate Prisma Client | [`SKILL.md`](.agents/skills/prisma-database-setup/SKILL.md) |
+| `prisma-cli` | Run Prisma commands: `init`, `migrate`, `generate`, `studio`, `db push/pull` | [`SKILL.md`](.agents/skills/prisma-cli/SKILL.md) |
+| `prisma-client-api` | Write CRUD queries with Prisma Client, filters, transactions, relations | [`SKILL.md`](.agents/skills/prisma-client-api/SKILL.md) |
+| `prisma-postgres` | Provision Prisma Postgres (cloud) database | [`SKILL.md`](.agents/skills/prisma-postgres/SKILL.md) |
+| `openapi-spec-generation` | Generate and maintain OpenAPI 3.1 specifications, API docs, SDK generation, contract validation | [`SKILL.md`](.agents/skills/openapi-spec-generation/SKILL.md) |
 
 ### For the frontend
 
-| Skill | When to use |
-|---|---|
-| `react-best-practices` | Optimize renders, bundle size, data fetching, avoid waterfalls |
-| `react-hook-form` | Build forms with React Hook Form (`useForm`, `useWatch`, validation) |
-| `tailwind-css-patterns` | Style components with Tailwind v4, responsive design, dark mode |
-| `vite` | Configure `vite.config.ts`, plugins, build, dev server proxy |
-| `composition-patterns` | Compound components, avoid boolean props, composition patterns |
-| `frontend-design` | Visual design of components and pages with distinctive identity |
-| `typescript-advanced-types` | Advanced types (generics, conditional, mapped types) |
-| `accessibility` | WCAG accessibility audit and improvement |
-| `seo` | Meta tags, structured data, sitemaps, search optimization |
+| Skill | When to use | Location |
+|---|---|---|
+| `react-best-practices` | Optimize renders, bundle size, data fetching, avoid waterfalls | [`SKILL.md`](.agents/skills/react-best-practices/SKILL.md) |
+| `react-hook-form` | Build forms with React Hook Form (`useForm`, `useWatch`, validation) | [`SKILL.md`](.agents/skills/react-hook-form/SKILL.md) |
+| `tailwind-css-patterns` | Style components with Tailwind v4, responsive design, dark mode | [`SKILL.md`](.agents/skills/tailwind-css-patterns/SKILL.md) |
+| `vite` | Configure `vite.config.ts`, plugins, build, dev server proxy | [`SKILL.md`](.agents/skills/vite/SKILL.md) |
+| `composition-patterns` | Compound components, avoid boolean props, composition patterns | [`SKILL.md`](.agents/skills/composition-patterns/SKILL.md) |
+| `frontend-design` | Visual design of components and pages with distinctive identity | [`SKILL.md`](.agents/skills/frontend-design/SKILL.md) |
+| `typescript-advanced-types` | Advanced types (generics, conditional, mapped types) | [`SKILL.md`](.agents/skills/typescript-advanced-types/SKILL.md) |
+| `accessibility` | WCAG accessibility audit and improvement | [`SKILL.md`](.agents/skills/accessibility/SKILL.md) |
+| `seo` | Meta tags, structured data, sitemaps, search optimization | [`SKILL.md`](.agents/skills/seo/SKILL.md) |
