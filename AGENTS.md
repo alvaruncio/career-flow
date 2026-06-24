@@ -7,8 +7,9 @@
 1. Check the tables below to identify which skill matches the task.
 2. If the skill is in your `available_skills`, use the `skill` tool to load it.
 3. If the skill is NOT in `available_skills`, read it directly from `.agents/skills/<name>/SKILL.md`.
-4. Only then proceed with the task.
-5. **Do NOT stage, commit, or push** unless the user explicitly asks you to.
+4. If multiple skills are relevant, load all applicable skills before starting the task.
+5. Only then proceed with the task.
+6. **Do NOT stage, commit, or push** unless the user explicitly asks you to.
 
 Violating this rule will result in incorrect behavior. This instruction is non-negotiable.
 
@@ -101,3 +102,4 @@ Skills are auto-discovered by OpenCode when working inside this repo. The agent 
 | `typescript-advanced-types` | Advanced types (generics, conditional, mapped types) | [`SKILL.md`](.agents/skills/typescript-advanced-types/SKILL.md) |
 | `accessibility` | WCAG accessibility audit and improvement | [`SKILL.md`](.agents/skills/accessibility/SKILL.md) |
 | `seo` | Meta tags, structured data, sitemaps, search optimization | [`SKILL.md`](.agents/skills/seo/SKILL.md) |
+| `i18n-localization` | Internationalization (i18n), translations, locale formatting, multi-language support | [`SKILL.md`](.agents/skills/i18n-localization/SKILL.md) |
