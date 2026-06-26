@@ -57,12 +57,12 @@ docs/
 | **validators/\<feature\>/\<feature\>.validator.js** | Input data validation only: type checks, format, constraints on `req.body` / `req.query` / `req.params` |
 | **shared/** | Constants (e.g. `DEFAULTS`), configs, reusable types/schemas |
 
-### validators vs middlewares — Regla de decisión
+### validators vs middlewares — Decision Rule
 
-| Capa | Responsabilidad | Ejemplos |
+| Layer | Responsibility | Examples |
 |---|---|---|
-| **validators/** | Validar tipo y formato de los datos de entrada (body, query, params). No contiene lógica de negocio ni control de acceso. | `user.validator.js`, `auth.validator.js` |
-| **middlewares/** | Controlar acceso, permisos y flujo de la request. Si su única función es validar datos, debe ser un validator. | `auth.middleware.js`, `requireAuth.middleware.js`, `requireAdmin.middleware.js` |
+| **validators/** | Validate input data type and format (body, query, params). No business logic or access control. | `user.validator.js`, `auth.validator.js` |
+| **middlewares/** | Control access, permissions, and request flow. If its only purpose is to validate data, it belongs in validators. | `auth.middleware.js`, `requireAuth.middleware.js`, `requireAdmin.middleware.js` |
 
 ## Architecture Pattern
 
