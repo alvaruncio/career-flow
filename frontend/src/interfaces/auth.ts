@@ -1,22 +1,9 @@
 export interface User {
-  id: string
+  id: number
   email: string
-  name?: string
-}
-
-export interface AuthResponse {
-  user: User
-  token: string
-}
-
-export interface AuthState {
-  user: User | null
-  token: string | null
-  isAuthenticated: boolean
-  login: (email: string, password: string) => Promise<void>
-  register: (email: string, password: string, name?: string) => Promise<void>
-  logout: () => void
-  setAuth: (user: User, token: string) => void
+  name: string
+  role: 'USER' | 'ADMIN'
+  createdAt: string
 }
 
 export interface LoginFormData {

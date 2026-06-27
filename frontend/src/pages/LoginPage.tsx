@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useAuthStore } from '../stores/authStore'
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 import { useI18nStore } from '../stores/i18nStore'
 import type { LoginFormData } from '../interfaces/auth'
 
 export default function LoginPage() {
   const [serverError, setServerError] = useState('')
-  const login = useAuthStore(state => state.login)
+  const { login } = useAuth()
   const navigate = useNavigate()
   const { t } = useI18nStore()
 

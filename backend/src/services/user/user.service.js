@@ -31,7 +31,6 @@ export class UserService {
         email: input.email,
         password: hashedPassword,
         role: input.role ?? 'USER',
-        createdById: input.createdById ?? null,
       },
     })
   }
@@ -45,15 +44,13 @@ export class UserService {
     if (input.password !== undefined) {
       data.password = await bcrypt.hash(input.password, DEFAULTS.SALT_ROUNDS)
     }
-    if (input.updatedById !== undefined) data.updatedById = input.updatedById
-
     return prisma.user.update({ where: { id }, data })
   }
 
-  static async delete(id, updatedById = null) {
+  static async delete(id) {
     return prisma.user.update({
       where: { id },
-      data: { deletedAt: new Date(), updatedById },
+      data: { deletedAt: new Date() },
     })
   }
 }

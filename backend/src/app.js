@@ -4,13 +4,32 @@ import { api } from './routes/index.js'
 
 const app = express()
 
+/*
+
+CORS CONFIGURACION
+
+*/
+
 app.use(cors({
     origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true,
     maxAge: 600
 }))
 
+/*
+
+MIDDLEWARES
+
+*/
 app.use(express.json())
+
+
+/*
+
+RUTA BASE
+
+*/
 
 app.get('/', (_req, res) => {
   return res.status(200).json({
@@ -18,6 +37,12 @@ app.get('/', (_req, res) => {
   })
 })
 
+
+/*
+
+HEALTH CHECK ENDPOINT
+
+*/
 app.get('/health', (_req, res) => {
   return res.status(200).json({
     status: 'ok',
@@ -26,7 +51,19 @@ app.get('/health', (_req, res) => {
   })
 })
 
+/*
+
+RUTAS
+
+*/
 app.use('/api/v1', api)
+
+
+/*
+
+MIDDLEWARES DE MANEJO DE ERRORES
+
+*/
 
 app.use((err, _req, res, _next) => {
   console.error(err.stack)

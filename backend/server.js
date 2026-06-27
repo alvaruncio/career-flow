@@ -1,11 +1,8 @@
+import { config } from './src/shared/config.js'
 import app from './src/app.js'
 
-process.loadEnvFile("../.env")
-
-const PORT = process.env.PORT ?? 3000
-
-const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+const server = app.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`)
 })
 
 const shutdown = (signal) => {

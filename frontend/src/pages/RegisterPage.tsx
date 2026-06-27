@@ -1,28 +1,44 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useAuthStore } from '../stores/authStore'
+import { useForm, useWatch } from 'react-hook-form'
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 import { useI18nStore } from '../stores/i18nStore'
 import type { RegisterFormData } from '../interfaces/auth'
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function RegisterPage() {
   const [serverError, setServerError] = useState('')
-  const registerUser = useAuthStore(state => state.register)
+  const [passwordFocused, setPasswordFocused] = useState(false)
+  const { register: registerUser } = useAuth()
   const navigate = useNavigate()
   const { t } = useI18nStore()
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
+    mode: 'onTouched',
     defaultValues: { name: '', email: '', password: '' },
   })
+
+  const watchPassword = useWatch({ control, name: 'password' })
+  const passwordValue = watchPassword ?? ''
+
+  const requirements = [
+    { key: 'minLength', test: (v: string) => v.length >= 8, label: t.register.passwordMinLength },
+    { key: 'uppercase', test: (v: string) => /[A-Z]/.test(v), label: t.register.passwordUppercase },
+    { key: 'lowercase', test: (v: string) => /[a-z]/.test(v), label: t.register.passwordLowercase },
+    { key: 'number', test: (v: string) => /[0-9]/.test(v), label: t.register.passwordNumber },
+    { key: 'symbol', test: (v: string) => /[^A-Za-z0-9]/.test(v), label: t.register.passwordSymbol },
+  ]
 
   const onSubmit = async (data: RegisterFormData) => {
     setServerError('')
     try {
-      await registerUser(data.email, data.password, data.name || undefined)
+      await registerUser(data.name, data.email, data.password)
       navigate('/dashboard')
     } catch (err) {
       setServerError((err as Error).message)
@@ -51,9 +67,20 @@ export default function RegisterPage() {
               type="text"
               className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder={t.register.namePlaceholder}
-              {...register('name')}
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+              {...register('name', {
+                validate: (value: string) => {
+                  if (!value || value.trim().length < 3) return t.register.nameMinLength
+                  return undefined
+                },
+              })}
             />
+            {errors.name && (
+              <p id="name-error" className="font-body-sm text-body-sm text-error" role="alert">{errors.name.message}</p>
+            )}
           </div>
+
           <div className="flex flex-col gap-sm">
             <label className="font-label-md text-label-md text-on-surface" htmlFor="email">{t.register.email}</label>
             <input
@@ -63,12 +90,16 @@ export default function RegisterPage() {
               placeholder={t.register.emailPlaceholder}
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'email-error' : undefined}
-              {...register('email', { required: t.register.emailRequired })}
+              {...register('email', {
+                required: t.register.emailRequired,
+                pattern: { value: EMAIL_REGEX, message: t.register.emailInvalid },
+              })}
             />
             {errors.email && (
               <p id="email-error" className="font-body-sm text-body-sm text-error" role="alert">{errors.email.message}</p>
             )}
           </div>
+
           <div className="flex flex-col gap-sm">
             <label className="font-label-md text-label-md text-on-surface" htmlFor="password">{t.register.password}</label>
             <input
@@ -78,15 +109,38 @@ export default function RegisterPage() {
               placeholder="••••••••"
               aria-invalid={!!errors.password}
               aria-describedby={errors.password ? 'password-error' : undefined}
+              onFocus={() => setPasswordFocused(true)}
               {...register('password', {
                 required: t.register.passwordRequired,
                 minLength: { value: 8, message: t.register.passwordMinLength },
+                onBlur: () => setPasswordFocused(false),
+                validate: (value: string) => {
+                  if (!/[A-Z]/.test(value)) return t.register.passwordUppercase
+                  if (!/[a-z]/.test(value)) return t.register.passwordLowercase
+                  if (!/[0-9]/.test(value)) return t.register.passwordNumber
+                  if (!/[^A-Za-z0-9]/.test(value)) return t.register.passwordSymbol
+                  return undefined
+                },
               })}
             />
+            {passwordFocused && (
+              <div className="p-sm border border-outline-variant rounded-lg bg-surface-container-lowest shadow-md space-y-1">
+                {requirements.map(req => {
+                  const met = req.test(passwordValue)
+                  return (
+                    <div key={req.key} className="flex items-center gap-1.5 font-body-sm text-body-sm">
+                      <span className={met ? 'text-secondary' : 'text-error'}>{met ? '✓' : '✗'}</span>
+                      <span className={met ? 'text-secondary' : 'text-error'}>{req.label}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
             {errors.password && (
               <p id="password-error" className="font-body-sm text-body-sm text-error" role="alert">{errors.password.message}</p>
             )}
           </div>
+
           <button
             type="submit"
             disabled={isSubmitting}

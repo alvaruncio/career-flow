@@ -8,6 +8,8 @@
 | **Prisma** | 6.6 | ORM, migrations, type-safe DB access |
 | **PostgreSQL** | — | Relational database (via `pg`) |
 | **bcrypt** | 5 | Password hashing |
+| **cookie-parser** | — | Parse `Cookie` header into `req.cookies` (JSON object) |
+| **jsonwebtoken** | — | Sign & verify JWT tokens |
 | **Node.js** | 18+ | Runtime with native `--watch` flag |
 | **ESM** | — | `"type": "module"` in `package.json`; use `import`/`export` only |
 
@@ -40,6 +42,7 @@ backend/
 
 docs/
 ├── openapi.yaml           # OpenAPI 3.1 specification
+├── auth-strategy.md       # Dual token auth (access + refresh) specification
 ├── service-pattern.md     # Service class example
 ├── controller-pattern.md  # Controller class example
 └── route-pattern.md       # Route definition example
@@ -63,6 +66,12 @@ docs/
 |---|---|---|
 | **validators/** | Validate input data type and format (body, query, params). No business logic or access control. | `user.validator.js`, `auth.validator.js` |
 | **middlewares/** | Control access, permissions, and request flow. If its only purpose is to validate data, it belongs in validators. | `auth.middleware.js`, `requireAuth.middleware.js`, `requireAdmin.middleware.js` |
+
+## Authentication Strategy — Dual Token (Access + Refresh)
+
+Authentication strategy using access token (15 min, in-memory) and refresh token (30 days, HTTPOnly cookie). Details, full flow, middleware, and interceptor component at:
+
+➡️ [`docs/auth-strategy.md`](docs/auth-strategy.md)
 
 ## Architecture Pattern
 

@@ -3,3 +3,10 @@ export const DEFAULTS = {
   LIMIT_OFFSET: 0,
   SALT_ROUNDS: 12,
 }
+
+export const AUTH = {
+  ACCESS_TOKEN_EXPIRY: '15m',
+  REFRESH_TOKEN_EXPIRY: '30d',
+  REFRESH_TOKEN_EXPIRY_MS: 30 * 24 * 60 * 60 * 1000,
+}
+
