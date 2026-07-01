@@ -2,15 +2,15 @@ services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: kanbancareer
-      POSTGRES_PASSWORD: kanbancareer
-      POSTGRES_DB: kanbancareer
+      POSTGRES_USER: ${POSTGRES_USER:-kanbancareer}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kanbancareer}
+      POSTGRES_DB: ${POSTGRES_DB:-kanbancareer}
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U kanbancareer -d kanbancareer"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kanbancareer}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -22,7 +22,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: "postgresql://kanbancareer:kanbancareer@db:5432/kanbancareer"
+      DATABASE_URL: "postgresql://${POSTGRES_USER:-kanbancareer}:${POSTGRES_PASSWORD:-kanbancareer}@db:5432/${POSTGRES_DB:-kanbancareer}"
+      NODE_ENV: development
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -30,8 +31,6 @@ services:
       db:
         condition: service_healthy
     restart: unless-stopped
-    command: >
-      sh -c "npx prisma generate && npx nodemon server.js"
 
 volumes:
   pgdata:
